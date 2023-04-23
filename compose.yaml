@@ -1,0 +1,56 @@
+services:
+  #Firebird Service
+  firebird:
+    image: jacobalberty/firebird
+    container_name: firebird
+    ports:
+      - 3050:3050
+    environment:
+      ISC_PASSWORD: 1234
+      FIREBIRD_USER: user
+      FIREBIRD_PASSWORD: 123123
+      FIREBIRD_DATABASE: test.FDB
+      EnableWireCrypt: 1
+      EnableLegacyClientAuth: 1
+    volumes:
+      - ./firebird/data:/firebird/data
+    networks:
+      - lumen-net
+
+  api:
+    build:
+      context: ./lumen
+      dockerfile: Dockerfile
+    image: lumen-api
+    container_name: api
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 9000:9000
+    volumes:
+      - ./lumen:/var/www
+    networks:
+      - lumen-net
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 8200:8080
+    volumes:
+      - ./lumen:/var/www
+      - ./nginx/conf.d/app.conf:/etc/nginx/conf.d/app.conf
+    networks:
+      - lumen-net
+    depends_on:
+      - api
+
+networks:
+  lumen-net:
+    driver: bridge
+
+#Volumes
+volumes:
+  dbdata:
