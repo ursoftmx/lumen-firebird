@@ -13,6 +13,4 @@
 |
 */
 
-$router->get('/example', function () use ($router) {
-    return $router->app->version();
-});
+$router->get('/example', 'ExampleController@index');

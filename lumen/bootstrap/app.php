@@ -94,6 +94,7 @@ $app->configure('app');
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(\Barryvdh\DomPDF\ServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -113,7 +114,7 @@ $app->router->group([
 });
 
 $app->router->group([
-    'namespace' => 'App\Http\Controllers\Api',
+    'namespace' => 'App\Http\Controllers\Api\V1',
     'prefix' => 'api/v1'
 ], function ($router) {
     require __DIR__.'/../routes/api.php';
