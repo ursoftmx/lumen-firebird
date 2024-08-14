@@ -12,11 +12,13 @@ class HealtCheckController extends Controller
     public function index()
     {
         try {
-            DB::connection('firebird')->getPdo();
-            return response()->json(['status' => 'ok'], 200);
+            $data = [
+                'firebirdConnection' => !!DB::connection('firebird')->getPdo(),
+                'postgreSqlConnection' => !!DB::connection('pgsql')->getPdo()
+            ];
+            return response()->json($data, 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
         }
     }
-
 }

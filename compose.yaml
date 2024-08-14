@@ -1,5 +1,4 @@
 services:
-  #Firebird Service
   firebird:
     image: jacobalberty/firebird
     container_name: firebird
@@ -14,6 +13,21 @@ services:
       EnableLegacyClientAuth: 1
     volumes:
       - ./firebird/data:/firebird/data
+    networks:
+      - lumen-net
+  
+  postgres:
+    container_name: postgres
+    image: postgres:14.1-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=homestead
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=homestead
+    ports:
+      - 5432:5432
+    volumes: 
+      - dbdata:/var/lib/postgresql/data
     networks:
       - lumen-net
 
@@ -31,7 +45,7 @@ services:
       - ./lumen:/var/www
     networks:
       - lumen-net
-  #Nginx Service
+  
   webserver:
     image: nginx:alpine
     container_name: webserver
