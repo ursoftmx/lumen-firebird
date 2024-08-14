@@ -37,7 +37,7 @@ class AuthController extends Controller
         return response()->json([
             "token_type"=> "bearer",
             'token' => $token,
-            'expires_at' => $expiresAt->timestamp,
+            'expires_in' => $expiresAt->timestamp,
         ]);
     }
 }

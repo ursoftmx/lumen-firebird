@@ -1,14 +1,11 @@
 services:
   firebird:
-    image: jacobalberty/firebird
+    image: jacobalberty/firebird:v3
     container_name: firebird
     ports:
       - 3050:3050
     environment:
       ISC_PASSWORD: masterkey
-      FIREBIRD_USER: sysdba
-      FIREBIRD_PASSWORD: masterkey
-      FIREBIRD_DATABASE: test.FDB
       EnableWireCrypt: 1
       EnableLegacyClientAuth: 1
     volumes:
