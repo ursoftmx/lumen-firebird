@@ -14,3 +14,4 @@
 */
 
 $router->get('/example', 'ExampleController@index');
+$router->get('/healthcheck', 'HealtCheckController@index');

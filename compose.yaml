@@ -6,9 +6,9 @@ services:
     ports:
       - 3050:3050
     environment:
-      ISC_PASSWORD: 1234
-      FIREBIRD_USER: user
-      FIREBIRD_PASSWORD: 123123
+      ISC_PASSWORD: masterkey
+      FIREBIRD_USER: sysdba
+      FIREBIRD_PASSWORD: masterkey
       FIREBIRD_DATABASE: test.FDB
       EnableWireCrypt: 1
       EnableLegacyClientAuth: 1
