@@ -13,5 +13,5 @@
 |
 */
 
-$router->get('/example', 'ExampleController@index');
-$router->get('/healthcheck', 'HealtCheckController@index');
+$router->get('cities', 'CityController@paging');
+

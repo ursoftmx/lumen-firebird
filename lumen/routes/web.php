@@ -17,4 +17,6 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+$router->get('/healthcheck', 'HealtCheckController@index');
+
 $router->post('/oauth/token', 'AuthController@generateToken');
