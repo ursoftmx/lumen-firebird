@@ -19,15 +19,26 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email',
+        'name',
+        'secret',
     ];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var string[]
-     */
     protected $hidden = [
-        'password',
+        'secret',
+        'token',
     ];
+
+    protected $casts = [
+        'token' => 'string',
+    ];
+
+    public function getAuthIdentifierName()
+    {
+        return $this->name;
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->secret;
+    }
 }

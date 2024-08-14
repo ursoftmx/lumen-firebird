@@ -8,6 +8,7 @@
         "php": "^8.1",
         "barryvdh/laravel-dompdf": "^2.0",
         "harrygulliford/laravel-firebird": "^3.2",
+        "illuminate/routing": "^10.34",
         "laravel/lumen-framework": "^10.0"
     },
     "require-dev": {

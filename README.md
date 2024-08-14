@@ -6,6 +6,7 @@
     
 ### To install Composer dependencies inside a running Docker container,
     $ docker exec api composer install
+    $ docker exec api php artisan migrate
 
 
 ### Healtcheck
